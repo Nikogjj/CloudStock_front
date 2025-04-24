@@ -1,0 +1,31 @@
+.container_documents{
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    /* border: 1px solid red; */
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#colonne{
+    background-color: rgb(219, 219, 219);
+}
+.document{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+}
+
+.case{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.document img{
+    height: 1.5rem;
+    width: 1.5rem;
+}

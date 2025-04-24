@@ -1,0 +1,39 @@
+<div class="container_documents">
+    <h2>Mes documents</h2>
+    <div id="colonne" class="document">
+        <div class="case">
+            <p>id</p>
+        </div>
+        <div class="case">
+            <p>nom</p>
+        </div>
+        <div class="case">
+            <p>propriétaire</p>
+        </div>
+        <div class="case">
+            <p>lien</p>
+        </div>
+    </div>
+    @for (document of documents; track $index) {
+        <div class="document">
+            <div class="case">
+                <p>{{document.id}}</p>
+            </div>
+            <div class="case">
+                <p>{{document.name}}</p>
+            </div>
+            <div class="case">
+                <p>{{document.owner_name}}</p>
+            </div>
+            <div class="case">
+                <!-- <a href='http://localhost:3400/get_document/{{document.name}}'> -->
+                <a href="javascript:console.log('ok')">
+                    <img src="download-svgrepo-com.svg" alt="">
+                </a>
+            </div>
+            <div class="case">
+                <img src="delete.svg" alt="">
+            </div>
+        </div>
+    }
+</div>

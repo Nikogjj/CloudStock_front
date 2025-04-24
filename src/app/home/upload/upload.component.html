@@ -1,0 +1,4 @@
+<form [formGroup]="formUpload" (ngSubmit)="onSubmit($event)">
+    <input type="file" name="file" formControlName="file">
+    <button type="submit">ajouter le document</button>
+</form>

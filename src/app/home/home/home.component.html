@@ -1,0 +1,10 @@
+<div class="home_container">
+    <app-header [userName]="userName"></app-header>
+    <div class="menu_container">
+        <!-- <app-buttons-disconnect></app-buttons-disconnect> -->
+        <app-display-menu></app-display-menu>
+        <div class="container_router">
+            <app-display-documents [documents]="this.userDocuments"></app-display-documents>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<form [formGroup]="createAccountForm" class="form_create" (ngSubmit)="onSubmit()">
+    <h2>Créer un compte</h2>
+    <div class="form_create_inputs" >
+        <div class="container_inputs">
+            <label for="identifiant">Identifiant :</label>
+            <input  type="text" placeholder="Identifiant" formControlName="identifiant"/>
+            <div *ngIf="isInvalidTouchedOrDirty('identifiant')">
+                <p style="margin: 0;" *ngIf="createAccountForm.controls.identifiant.hasError('required')">champs requis</p>
+            </div>
+            <div *ngIf="isInvalidTouchedOrDirty('identifiant')">
+                <p style="margin: 0;" *ngIf="createAccountForm.controls.identifiant.hasError('minlength')">doit contenir au moins 5 caractères</p>
+            </div>
+        </div>
+        <div class="container_inputs">
+            <label for="password">Mot de passe :</label>
+            <input type="text" placeholder="Mot de passe" formControlName="password">
+            <div *ngIf="isInvalidTouchedOrDirty('password')">
+                <p style="margin: 0;" *ngIf="createAccountForm.controls.password.hasError('required')">champs requis</p>
+            </div>
+            <div *ngIf="isInvalidTouchedOrDirty('password')">
+                <p style="margin: 0;" *ngIf="createAccountForm.controls.password.hasError('minlength')">doit contenir au moins 5 caractères</p>
+            </div>
+            @if (verifyPassword==-1) {
+                <p>Les mots de passe de correspondent pas</p>
+            }
+        </div>
+        <div class="container_inputs">
+            <label for="password">Confirmer le mot de passe :</label>
+            <input type="text" placeholder="Confirmer le mot de passe" formControlName="checkPassword">
+            <div *ngIf="isInvalidTouchedOrDirty('checkPassword')">
+                <p style="margin: 0;" *ngIf="createAccountForm.controls.checkPassword.hasError('required')">champs requis</p>
+            </div>
+            <div *ngIf="isInvalidTouchedOrDirty('checkPassword')">
+                <p style="margin: 0;" *ngIf="createAccountForm.controls.checkPassword.hasError('minlength')">doit contenir au moins 5 caractères</p>
+            </div>
+        </div>
+        @if (verifyIfAccountCreated == 1) {
+            <h3>{{msgAccountCreated}}</h3>
+        }
+    </div>
+    <button type="submit">Créer le compte</button>
+</form>
