@@ -26,10 +26,9 @@
                 <p>{{document.owner_name}}</p>
             </div>
             <div class="case">
-                <!-- <a href='http://localhost:3400/get_document/{{document.name}}'> -->
-                <a href="javascript:console.log('ok')">
-                    <img src="download-svgrepo-com.svg" alt="">
-                </a>
+                <!-- <a href='http://localhost:3400/get_document/{{document.name}}/{{token}}' download="apple"> -->
+                    <img (click)="downloadImage(document.name)" src="download-svgrepo-com.svg" alt="">
+                <!-- </a> -->
             </div>
             <div class="case">
                 <img src="delete.svg" alt="">
