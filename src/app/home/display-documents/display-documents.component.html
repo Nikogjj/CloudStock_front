@@ -14,6 +14,9 @@
             <p>lien</p>
         </div>
     </div>
+    @if (documents.length==0) {
+        <p>Pas de document</p>
+    }
     @for (document of documents; track $index) {
         <div class="document">
             <div class="case">
@@ -27,11 +30,11 @@
             </div>
             <div class="case">
                 <!-- <a href='http://localhost:3400/get_document/{{document.name}}/{{token}}' download="apple"> -->
-                    <img (click)="downloadImage(document.name)" src="download-svgrepo-com.svg" alt="">
+                <img (click)="downloadDocument(document.name)" src="download-svgrepo-com.svg" alt="">
                 <!-- </a> -->
             </div>
             <div class="case">
-                <img src="delete.svg" alt="">
+                <img (click)="deleteDocument(document.id)" src="delete.svg" alt="">
             </div>
         </div>
     }

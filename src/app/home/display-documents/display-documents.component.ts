@@ -12,26 +12,36 @@ export class DisplayDocumentsComponent {
   ngOnInit(){
     this.token ="Bearer " + localStorage.getItem("token");
   }
-  downloadImage(nameDocument : string){
+  downloadDocument(nameDocument : string){
     const options = {
       method : "GET"
     }
     fetch(`http://localhost:3400/get_document/${nameDocument}/${this.token}`,{method : "GET"})
     .then(async (res)=>{
-      if (res) {
-        const url = window.URL.createObjectURL(new Blob ([await res.blob()]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download",nameDocument);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        window.URL.revokeObjectURL(url);
-      }
-      else{
-        console.error("error avec le fetch");
-      }
+      const url = window.URL.createObjectURL(new Blob ([await res.blob()]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download",nameDocument);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
     })
     .catch(error=>console.error(error))
+  }
+
+  deleteDocument(id : string){
+    const token = localStorage.getItem("token");
+    console.log(token)
+    const options = {
+      method : "DELETE",
+      headers : new Headers({
+        "Authorization" : `Baerer ${token}`
+      })
+    }
+    fetch(`http://localhost:3400/delete_document/${id}`,options)
+    .then(res=>res.json())
+    .then(res=>console.log(res))
+    .catch(error=>console.log(error));
   }
 }
