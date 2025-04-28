@@ -1,4 +1,6 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, inject, Inject, Input, signal, Signal } from '@angular/core';
+import { DocumentFromApi } from '../../types/msg.interface';
+import { DocumentsService } from '../../services/documents.service';
 
 @Component({
   selector: 'app-display-documents',
@@ -7,11 +9,13 @@ import { Component, Inject, Input } from '@angular/core';
   styleUrl: './display-documents.component.css'
 })
 export class DisplayDocumentsComponent {
-  @Input() documents: Array<any> = [];
+  documentsService = inject(DocumentsService);
   token : string | null = null;
+
   ngOnInit(){
     this.token ="Bearer " + localStorage.getItem("token");
   }
+
   downloadDocument(nameDocument : string){
     const options = {
       method : "GET"

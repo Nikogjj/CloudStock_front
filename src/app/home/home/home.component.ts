@@ -1,10 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal, Signal } from '@angular/core';
 import { ButtonsDisconnectComponent } from '../../buttons/buttons-disconnect/buttons-disconnect.component';
 import { HeaderComponent } from '../../header/header.component';
 import { AuthService } from '../../services/auth.service';
 import { DisplayDocumentsComponent } from '../display-documents/display-documents.component';
 import { DisplayMenuComponent } from '../display-menu/display-menu.component';
 import { Router } from '@angular/router';
+import { DocumentsService } from '../../services/documents.service';
+import { DocumentFromApi } from '../../types/msg.interface';
 
 @Component({
   selector: 'app-home',
@@ -13,13 +15,14 @@ import { Router } from '@angular/router';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-  constructor(private router : Router){
+  constructor(private router : Router ){
 
   }
 
   userName = "";
   userId = "";
-  userDocuments : Array<any> = [];
+  documentsService = inject(DocumentsService);
+  // documents = this.documentsService.documents();
 
   authServices = inject(AuthService)
   
@@ -33,11 +36,15 @@ export class HomeComponent {
       console.log(res)
       this.userName = res.identifiant;
       this.userId = res.id;
-      this.userDocuments = res.documents
-
-      this.userDocuments.forEach(element => {
-        console.log(element);
-      });
+      // this.documents= res.documents;
+      this.documentsService.documents = res.documents
+      // this.documentsService.documents = this.documents()
+      // console.log(this.documents);
+      console.log(this.documentsService.documents);
+      // this.userDocuments = res.documents
+      // this.userDocuments.forEach(element => {
+      //   console.log(element);
+      // });
     })
     .catch(error=>{
       localStorage.clear();
