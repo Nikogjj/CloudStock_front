@@ -14,10 +14,10 @@
             <p>lien</p>
         </div>
     </div>
-    @if (documents.length==0) {
+    @if (documentsService.documents.length==0) {
         <p>Pas de document</p>
     }
-    @for (document of documents; track $index) {
+    @for (document of documentsService.documents; track $index) {
         <div class="document">
             <div class="case">
                 <p>{{document.id}}</p>

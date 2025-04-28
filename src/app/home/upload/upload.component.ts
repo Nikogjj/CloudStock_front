@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { DocumentsService } from '../../services/documents.service';
 
 @Component({
   selector: 'app-upload',
@@ -12,6 +13,8 @@ export class UploadComponent {
   formUpload = new FormGroup({
     file : new FormControl()
   })
+  documentsService=inject(DocumentsService)
+  // documents = this.documentsService.documents
 
   onSubmit(event : Event){
     const token = localStorage.getItem("token")
@@ -28,7 +31,11 @@ export class UploadComponent {
     }
     fetch("http://localhost:3400/upload_documents",options)
     .then(res=>res.json())
-    .then(res=>console.log(res))
+    .then(async res=>{
+      console.log(res)
+      this.documentsService.documents = res.documents;
+      console.log(this.documentsService.documents)
+    })
     .catch(error=>console.error(error))
   }
 
